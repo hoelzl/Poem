@@ -1,0 +1,6 @@
+defaults:
+  -
+    scope:
+      path: "" # All files in the project.
+    values:
+      layout: "default"
