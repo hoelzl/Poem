@@ -1,4 +1,4 @@
-Overview of Poem and its implementations
+# Poem
 
 This repository contains an overview of the Poem language for developing awareness mechanisms and its various implementations.
 
