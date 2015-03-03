@@ -100,6 +100,7 @@ turn, pass the error of these predictions up.
 Acknowledgments
 ---------------
 
-The development of Poem was funded by the European ASCENS project
-("Software Engineering for **A**utonomic **S**ervice-**C**omponent
-**Ens**embles").
+
+The development of Poem was funded by the European project IP 257414
+ASCENS ("Software Engineering for **A**utonomic
+**S**ervice-**C**omponent **Ens**embles").
