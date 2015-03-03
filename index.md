@@ -4,7 +4,9 @@ subtitle: A language for designing awareness mechanisms
 ---
 
 Poem is a language for designing awareness mechanisms for adaptive,
-autonomous systems. What does that mean, exactly?
+autonomous systems.
+
+Wait, what does that mean, exactly?
 
 Autonomy, Awareness and Self-Expression
 ---------------------------------------
@@ -81,20 +83,66 @@ in many areas of artificial intelligence and machine learning.
 There are many reasons for this, but I want to focus on one particular
 aspect: in most situation where adaptation is required there is a huge
 space of possible inferences we can draw and behaviors we can
-try---almost all of them irrelevant to the problem.  This is,
-obviously, in no way a novel observation, and many ways to tame the
-problem of state explosion have been proposed.  One of the most
-interesting developments in this area is the theory of
+try---almost all of them irrelevant to the problem.  If, for example,
+you use a theorem prover to reason about desirable robot behaviors and
+you have a sufficiently rich vocabulary in your logic, then you will
+often observe the following phenomenon: You input a query how to
+navigate from *A* to *B* to the reasoner, and it starts with reasoning
+steps that seem natural enough.  But then it stumbles upon some
+formula that connects locations with activities, and soon your
+reasoner ponders questions such as "Will picking up a victim in
+location *C* result in a higher reward than assisting robot *X*
+transport a victim from *D* to *E*?"  While this question may be
+interesting, it will not really help you solve your navigation problem
+(and it includes another navigation problem of its own).  Instead of
+staying focused on getting from here to there the reasoner goes
+everywhere to find a solution.
+
+This is, obviously, in no way a novel observation, and many ways to
+tame the problem of "proof state explosion" have been proposed for
+inference engines: set of support strategies that limit new inference
+steps to predicates that occur in the query or in previous inference
+steps; predicate ordering strategies, pruning branches in the proof
+tree by rewriting, etc.
+
+But one of the most interesting contributions to the problem of
+guiding reasoning comes from the theory of
 [predictive processing](http://www.ncbi.nlm.nih.gov/pubmed/23663408)
-that was proposed by neuroscientists.  The traditional model of
-"intilligent" systems supposes that sensors deliver raw data to a
-reasoning system that processes this data and sends the actions that
-should be performed to the actuators of a system (this possibly
-happens in several layers).  Predictive processing in contrast
-supposes that neuronal processing happens in a multi-layer network, in
-which the higher layers generate predictions of the sensor data and
-pass these predictions to the lower layers.  The lower layers, in
-turn, pass the error of these predictions up.
+that was proposed by neuroscientists and works in a very different
+manner: it changes the problem from reasoning to prediction.  The
+traditional model of "intilligent" systems supposes that sensors
+deliver raw data to a reasoning system that processes this data and
+sends the actions that should be performed to the actuators of a
+system (this possibly happens in several layers).  Predictive
+processing in contrast supposes that neuronal processing happens in a
+multi-layer network, in which the higher layers generate predictions
+of the sensor data and pass these predictions to the lower layers.
+The lower layers, in turn, pass the error of these predictions up.
+Predictive processing is closely connected to an area of machine
+learning called [deep learning](http://deeplearning.net/) that has
+been applied very successfully to a number of hard machine learning
+problems.  And in fact the Poem runtime (called *Iliad*) contains not
+one but two third-party frameworks for deep learning (one written in
+Lisp for easy integration with the reasoners, one in LuaJIT for easy
+integration with the rest of the world).
+
+So we're all set, right?  Just put everything into a deep learner, and
+obtain an intelligent agent.
+
+As you surely know, this is not going to work for a number of
+reasons, for example:
+
+* it's not clear how to even describe the behavior of a robot in such
+  a way that you can apply learning techniques to it;
+
+* learning everything a robot needs to do takes a lot of time;
+
+* relying on behaviors learned autonomously leaves developers very
+  little control over the system and is likely to result in many
+  unwanted behaviors;
+
+* currently available techniques work rather poorly for learning
+  distributed behaviors.
 
 
 Acknowledgments
