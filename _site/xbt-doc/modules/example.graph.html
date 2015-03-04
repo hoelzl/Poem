@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><strong>example.graph</strong></li>
+  <li><a href="../modules/example.nodes.html">example.nodes</a></li>
+  <li><a href="../modules/main.html">main</a></li>
+  <li><a href="../modules/test.test_all.html">test.test_all</a></li>
+  <li><a href="../modules/test.test_util.html">test.test_util</a></li>
+  <li><a href="../modules/test.test_xbt.html">test.test_xbt</a></li>
+  <li><a href="../modules/util.html">util</a></li>
+  <li><a href="../modules/util.path.html">util.path</a></li>
+  <li><a href="../modules/xbt.html">xbt</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>example.graph</code></h1>
+<p>Generating and finding paths in graphs.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2015, Matthias Hölzl</li>
+        <li><strong>License</strong>: MIT, see the file LICENSE.md.</li>
+        <li><strong>Author</strong>: Matthias Hölzl</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#node_dist">node_dist (n1, n2)</a></td>
+	<td class="summary">Compute the distance between two nodes</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#diameter">diameter (nodes)</a></td>
+	<td class="summary">Compute the diameter of a graph
+ Compute the diameter of the nodes of a graph, i.e., the maximum
+ distance between any two nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#min_node_distance">min_node_distance (node, nodes)</a></td>
+	<td class="summary">Compute the minimum distance between a node and a set of nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#maxmin_distance">maxmin_distance (nodes)</a></td>
+	<td class="summary">Compute the maximum of the minimal node distances.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#generate_all_edges">generate_all_edges (nodes)</a></td>
+	<td class="summary">Generate all possible edges between members of nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#make_short_edge_generator">make_short_edge_generator (slack)</a></td>
+	<td class="summary">Build a generator that builds all short edges between nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#generate_graph">generate_graph (number_of_nodes, size, edge_generator)</a></td>
+	<td class="summary">Generate a graph.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#outnodes">outnodes (g, n)</a></td>
+	<td class="summary">All nodes reachable via an outgoing edge.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#generate_table">generate_table (size, init_value)</a></td>
+	<td class="summary">Generate a square two-dimensional table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#floyd">floyd (g)</a></td>
+	<td class="summary">Compute the tables for computing all paths in a graph.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path">path (g, n1, n2)</a></td>
+	<td class="summary">Compute the cheapest path between nodes in a graph.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pathstring">pathstring (g, n1, n2)</a></td>
+	<td class="summary">Return the shortest path between nodes in a graph as string.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "node_dist"></a>
+    <strong>node_dist (n1, n2)</strong>
+    </dt>
+    <dd>
+    Compute the distance between two nodes
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n1</span>
+         The first node.
+        </li>
+        <li><span class="parameter">n2</span>
+         The second node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The distance between <code>n1</code> and <code>n2</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "diameter"></a>
+    <strong>diameter (nodes)</strong>
+    </dt>
+    <dd>
+    Compute the diameter of a graph
+ Compute the diameter of the nodes of a graph, i.e., the maximum
+ distance between any two nodes.   It is passed a set of nodes, not a
+ graph.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nodes</span>
+         The nodes of a graph.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The diameter of the graph.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "min_node_distance"></a>
+    <strong>min_node_distance (node, nodes)</strong>
+    </dt>
+    <dd>
+    Compute the minimum distance between a node and a set of nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         A node.
+        </li>
+        <li><span class="parameter">nodes</span>
+         A set of nodes.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The minimum distance between <code>node</code> and any element of
+  <a href="../modules/example.nodes.html">nodes</a>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "maxmin_distance"></a>
+    <strong>maxmin_distance (nodes)</strong>
+    </dt>
+    <dd>
+    Compute the maximum of the minimal node distances.
+ Ccompute the maximum of the minimal distances between any two
+ members of a set of nodes.  Inserting all edges of length no bigger
+ than this value ensures that every node in the graph is connected
+ to at least one other node (although the graph may still consist of
+ many disconnected components).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nodes</span>
+         The nodes of a graph.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The maximum of the minimum of the distances between nodes.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "generate_all_edges"></a>
+    <strong>generate_all_edges (nodes)</strong>
+    </dt>
+    <dd>
+    Generate all possible edges between members of nodes.
+ When passed as edge generator to <a href="../modules/example.graph.html#generate_graph">generate_graph</a> this will build
+ the complete graph for the generated nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nodes</span>
+         The nodes of a graph.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        All possible edges for the nodes.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "make_short_edge_generator"></a>
+    <strong>make_short_edge_generator (slack)</strong>
+    </dt>
+    <dd>
+    Build a generator that builds all short edges between nodes.
+ This function returns a function that is suitable as edge generator
+ for <a href="../modules/example.graph.html#generate_graph">generate_graph</a>.  This generator builds all edges that are
+ shorter than <code>slack</code> times the <a href="../modules/example.graph.html#maxmin_distance">maxmin_distance</a> between nodes.
+ Setting slack to a value below 1 will ensure that the graph
+ contains isolated nodes (and in general consists of many
+ disconnected components).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">slack</span>
+         A factor by which the generated edges may be longer
+  than the maxmin distance.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        All short edges for <a href="../modules/example.nodes.html">nodes</a>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "generate_graph"></a>
+    <strong>generate_graph (number_of_nodes, size, edge_generator)</strong>
+    </dt>
+    <dd>
+    Generate a graph.
+ Generate a graph with the given number of nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number_of_nodes</span>
+         The number of nodes in the graph.  Each node
+  has an integer attribute <code>id</code> that has to correspond to its
+  position in the array of nodes, <code>x</code> and <code>y</code> attributes that
+  describe its physical location, a <a href="http://www.lua.org/manual/5.1/manual.html#pdf-type">type</a> attribute that has the
+  value <code>&quot;node&quot;</code>, and an array of the same size as the nodes table
+  that contains <code>nil</code> for indices of nodes for which there is no
+  edge, and the transition for indices for which a transition
+  exists.  The entries in this array have to be filled in by the
+  <code>edge_generator</code>.
+        </li>
+        <li><span class="parameter">size</span>
+         The size of the are in which the nodes are located.
+  May either be a number, in which case both x and y dimension are
+  set to this number, or a pair <code>{x=x, y=y}</code> that specifies the
+  dimensions for x and y separately.  Defaults to 500.
+        </li>
+        <li><span class="parameter">edge_generator</span>
+         A function that generates the edges for the
+  graph given the table of nodes.  The generator has to add each
+  edge to the correct index of the <code>edges</code> array of its start node.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "outnodes"></a>
+    <strong>outnodes (g, n)</strong>
+    </dt>
+    <dd>
+    All nodes reachable via an outgoing edge.
+ Compute all nodes of <code>g</code> that are directly reachable from <code>n</code> via an
+ outgoing edge.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">g</span>
+         A graph.
+        </li>
+        <li><span class="parameter">n</span>
+         Either a node or a node id.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "generate_table"></a>
+    <strong>generate_table (size, init_value)</strong>
+    </dt>
+    <dd>
+    Generate a square two-dimensional table.
+ Genrate a table with <code>size</code>*<code>size</code> entries, each of which has the
+ value <code>init_value</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">size</span>
+         The size of one table dimension.
+        </li>
+        <li><span class="parameter">init_value</span>
+         The initial value of all entries.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A freshly allocated table.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "floyd"></a>
+    <strong>floyd (g)</strong>
+    </dt>
+    <dd>
+    Compute the tables for computing all paths in a graph.
+ Uses the Floyd-Warshall dynamic-programming algorithm to compute
+ tables <code>dist</code> and <a href="http://www.lua.org/manual/5.1/manual.html#pdf-next">next</a>.  <code>dist</code>'s entries at position <code>[i][j]</code>
+ contain the (weighted) cost of the cheapes path between nodes <code>i</code>
+ and <code>j</code> (where <code>i</code> and <code>j</code> are the node ids or, equivalently, their
+ position in the <a href="../modules/example.nodes.html">nodes</a> array of the graph).  The cost is taken
+ from the transition's <code>cost</code> attribute.  The entry of <a href="http://www.lua.org/manual/5.1/manual.html#pdf-next">next</a> at
+ this position is the next node on the shortest path between the two
+ nodes.  These tables are then added to <code>g</code> as the <code>dist</code> and <a href="http://www.lua.org/manual/5.1/manual.html#pdf-next">next</a>
+ attributes; if these attributes already exist they are not taken
+ into account and overwritten.  The algorithm has time complexity
+ O(<code>#g.nodes</code>^3) and quadratic space complexity.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">g</span>
+         The graph whose tables are computed.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        The <code>dist</code> table.</li>
+        <li>
+        The <a href="http://www.lua.org/manual/5.1/manual.html#pdf-next">next</a> table.</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path"></a>
+    <strong>path (g, n1, n2)</strong>
+    </dt>
+    <dd>
+    Compute the cheapest path between nodes in a graph.
+ Compute the cheapest path between two nodes in a graph.  The first
+ invocation of this function uses <a href="../modules/example.graph.html#floyd">floyd</a> to compute the <code>dist</code> and
+ <a href="http://www.lua.org/manual/5.1/manual.html#pdf-next">next</a> tables for <code>g</code> and therefore has time complexity
+ O(<code>#g.nodes</code>^3) and quadratic space complexity.  Subsequent
+ invocations have linear complexity in the size of the path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">g</span>
+         The graph.
+        </li>
+        <li><span class="parameter">n1</span>
+         The start node.
+        </li>
+        <li><span class="parameter">n2</span>
+         The end node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An array containing the ids of the nodes on the cheapest
+  path between 'n1' and 'n2'.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pathstring"></a>
+    <strong>pathstring (g, n1, n2)</strong>
+    </dt>
+    <dd>
+    Return the shortest path between nodes in a graph as string.
+ Compute the sortest path between two nodes in a graph using the
+ function <a href="../modules/example.graph.html#path">path</a> and return the result as a string.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">g</span>
+         The graph.
+        </li>
+        <li><span class="parameter">n1</span>
+         The start node.
+        </li>
+        <li><span class="parameter">n2</span>
+         The end node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A string representation of the shortest path.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-20 15:07:01 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

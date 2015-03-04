@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/example.graph.html">example.graph</a></li>
+  <li><a href="../modules/example.nodes.html">example.nodes</a></li>
+  <li><a href="../modules/main.html">main</a></li>
+  <li><a href="../modules/test.test_all.html">test.test_all</a></li>
+  <li><a href="../modules/test.test_util.html">test.test_util</a></li>
+  <li><a href="../modules/test.test_xbt.html">test.test_xbt</a></li>
+  <li><a href="../modules/util.html">util</a></li>
+  <li><strong>util.path</strong></li>
+  <li><a href="../modules/xbt.html">xbt</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>util.path</code></h1>
+<p>Submodule for paths.</p>
+<p> The submodule <a href="../modules/util.path.html">path</a> contains all operations for
+ operating on paths in the XBT.</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2015, Matthias Hölzl</li>
+        <li><strong>License</strong>: MIT, see the file LICENSE.md.</li>
+        <li><strong>Author</strong>: Matthias Hölzl</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new (...)</a></td>
+	<td class="summary">Generate a new path starting at the root of the XBT.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path.meta.__eq">path.meta.__eq (p1, p2)</a></td>
+	<td class="summary">Paths are compared using value equality.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path.meta.__tostring">path.meta.__tostring (p)</a></td>
+	<td class="summary">Convert a path to string</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path.meta.__index.down">path.meta.__index.down (p)</a></td>
+	<td class="summary">Descend one level deeper into the tree.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path.meta.__index.right">path.meta.__index.right (p)</a></td>
+	<td class="summary">Move to the next sibling of the current node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path.meta.__index.up">path.meta.__index.up (p)</a></td>
+	<td class="summary">Move up one level in a tree.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#path.meta.__index.copy">path.meta.__index.copy (p, extension)</a></td>
+	<td class="summary">Copy a path.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_path">is_path (p)</a></td>
+	<td class="summary">Check whether a value represents a path.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#meta">meta</a></td>
+	<td class="summary">The metatable for path objects.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new (...)</strong>
+    </dt>
+    <dd>
+    Generate a new path starting at the root of the XBT.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         Any number of positive integers can be passed as
+  arguments to the function and will be used as the value for the
+  result path.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A new path.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path.meta.__eq"></a>
+    <strong>path.meta.__eq (p1, p2)</strong>
+    </dt>
+    <dd>
+    Paths are compared using value equality.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p1</span>
+         A path.
+        </li>
+        <li><span class="parameter">p2</span>
+         Another path.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> if <code>p1</code> and <code>p2</code> point to the same location in the
+  tree, false otherwise.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path.meta.__tostring"></a>
+    <strong>path.meta.__tostring (p)</strong>
+    </dt>
+    <dd>
+    Convert a path to string
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p</span>
+         A path.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A string representation of <code>p</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path.meta.__index.down"></a>
+    <strong>path.meta.__index.down (p)</strong>
+    </dt>
+    <dd>
+    Descend one level deeper into the tree.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p</span>
+         A path pointing to a node <code>n</code> in an XBT.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The value of <code>p</code> modified to point to the first child of
+  <code>n</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path.meta.__index.right"></a>
+    <strong>path.meta.__index.right (p)</strong>
+    </dt>
+    <dd>
+    Move to the next sibling of the current node.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p</span>
+         A path pointing to a node <code>n</code> in an XBT.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The value of <code>p</code> modified to point to the right sibling of
+  <code>n</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path.meta.__index.up"></a>
+    <strong>path.meta.__index.up (p)</strong>
+    </dt>
+    <dd>
+    Move up one level in a tree.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p</span>
+         A path pointing to a non-root node <code>n</code> of an XBT.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The value of <code>p</code> modified to point to the parent of <code>n</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "path.meta.__index.copy"></a>
+    <strong>path.meta.__index.copy (p, extension)</strong>
+    </dt>
+    <dd>
+    Copy a path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p</span>
+         A path pointing to a node in an XBT.
+        </li>
+        <li><span class="parameter">extension</span>
+         An extension of the path that will be added to the
+  copy.  Either a positive integer for a single step or an array of
+  positive integers for a relative path.  No extension is added if
+  <code>extension</code> is falsy.  Default is <code>nil</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A copy of the path <code>p</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_path"></a>
+    <strong>is_path (p)</strong>
+    </dt>
+    <dd>
+    Check whether a value represents a path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">p</span>
+         The value to be tested.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+         A Boolean indicating whether <code>p</code> is a path.  This decision
+  is made by checking whether the metatable of <code>p</code> is the one
+  defined for paths, so path-like objects are not accepted.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "meta"></a>
+    <strong>meta</strong>
+    </dt>
+    <dd>
+    The metatable for path objects.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">__index</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-20 15:07:01 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

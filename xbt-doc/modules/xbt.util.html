@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Xbt</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><strong>xbt.util</strong></li>
+  <li><a href="../modules/xbt.path.html">xbt.path</a></li>
+  <li><a href="../modules/xbt.graph.html">xbt.graph</a></li>
+  <li><a href="../modules/xbt.html">xbt</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xbt.util</code></h1>
+<p>Utility functions for XBTs.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2015, Matthias Hölzl</li>
+        <li><strong>License</strong>: MIT, see the file LICENSE.md.</li>
+        <li><strong>Author</strong>: Matthias Hölzl</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#random">random (m, n)</a></td>
+	<td class="summary">Generate a random bounded integer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#uuid">uuid ()</a></td>
+	<td class="summary">An implementation of version 4 UUIDs.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#size">size (t)</a></td>
+	<td class="summary">Compute the size of a table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#equal">equal (t1, t2, cache)</a></td>
+	<td class="summary">Value equality for tables.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#keys">keys (t)</a></td>
+	<td class="summary">Return a list containing the keys of a table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#addall">addall (t1, t2)</a></td>
+	<td class="summary">Conjoin the members of one table to another.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#append">append (t1, t2)</a></td>
+	<td class="summary">Append two arrays.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#maybe_add">maybe_add (table, attribute, value)</a></td>
+	<td class="summary">Add an attribute to a table if it doesn't already exist.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#debug_print">debug_print (...)</a></td>
+	<td class="summary">Print arguments when debugging is enabled.</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#rng">rng</a></td>
+	<td class="summary">The central random number generator.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#debug">debug</a></td>
+	<td class="summary">A flag indicating whether debug output should be shown.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "random"></a>
+    <strong>random (m, n)</strong>
+    </dt>
+    <dd>
+    Generate a random bounded integer.
+ The generated integer is between <code>m</code> and <code>n</code> (inclusive) if two
+ arguments are provided, otherwise it is between <code>1</code> and <code>n</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">m</span>
+         The lower bound of the generated numbers (inclusive) if
+  a second argument is provided, otherwise the upper bound.
+        </li>
+        <li><span class="parameter">n</span>
+         The upper bound of the generated number if an argument is
+  provided.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "uuid"></a>
+    <strong>uuid ()</strong>
+    </dt>
+    <dd>
+    An implementation of version 4 UUIDs.
+ Generates a V4 (random) unique identifier represented as a string.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A string in UUID V4 format.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "size"></a>
+    <strong>size (t)</strong>
+    </dt>
+    <dd>
+    Compute the size of a table.
+ This includes all attributes and array members.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         A table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The number of attributes of <code>t</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "equal"></a>
+    <strong>equal (t1, t2, cache)</strong>
+    </dt>
+    <dd>
+    Value equality for tables.
+ Check whether two tables are equal as values.  Recursively descends
+ into attributes.  All other values are compared using <code>==</code>.
+ Ignoeres metatables.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t1</span>
+         A table.
+        </li>
+        <li><span class="parameter">t2</span>
+         A table.
+        </li>
+        <li><span class="parameter">cache</span>
+         A cache for values that have already been compared
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> if <code>t1</code> and <code>t2</code> have the same value, <code>false</code>
+  otherwise.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "keys"></a>
+    <strong>keys (t)</strong>
+    </dt>
+    <dd>
+    Return a list containing the keys of a table.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+         A table.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The keys of <code>t</code> sorted alphabetically.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "addall"></a>
+    <strong>addall (t1, t2)</strong>
+    </dt>
+    <dd>
+    Conjoin the members of one table to another.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t1</span>
+         The table to which the new values are added.  Modified
+  destructively.
+        </li>
+        <li><span class="parameter">t2</span>
+         The table containing the new keys
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>t1</code>, modified with the key/value bindings of <code>t2</code> Keys
+  occurring in both tables get the value of <code>t2</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "append"></a>
+    <strong>append (t1, t2)</strong>
+    </dt>
+    <dd>
+    Append two arrays.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t1</span>
+         An array.  Destructively modified.
+        </li>
+        <li><span class="parameter">t2</span>
+         An array.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>t1</code>, extended with the values of <code>t2</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "maybe_add"></a>
+    <strong>maybe_add (table, attribute, value)</strong>
+    </dt>
+    <dd>
+    Add an attribute to a table if it doesn't already exist.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table</span>
+         The table to which the attribute is added
+        </li>
+        <li><span class="parameter">attribute</span>
+         The name of the attribute as string
+        </li>
+        <li><span class="parameter">value</span>
+         The value of the attribute.  Defaults to <code>{}</code>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <a href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a>, with the <code>attribute</code>/<code>value</code> pair added if no
+  value for <code>attribute</code> was present, the unmodified table otherwise.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "debug_print"></a>
+    <strong>debug_print (...)</strong>
+    </dt>
+    <dd>
+    Print arguments when debugging is enabled.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         Any number of arguments will be passed on to <a href="http://www.lua.org/manual/5.1/manual.html#pdf-print">print</a>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "rng"></a>
+    <strong>rng</strong>
+    </dt>
+    <dd>
+    The central random number generator.
+ To ensure that experiments can be repeated we use a single random
+ number generator in all places where random numbers are needed, and
+ we add its seed to the description of the experiment.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "debug"></a>
+    <strong>debug</strong>
+    </dt>
+    <dd>
+    A flag indicating whether debug output should be shown.
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-03-03 12:33:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

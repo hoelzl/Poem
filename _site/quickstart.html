@@ -13,14 +13,14 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>{{page.title}}</title>
+    <title>Poem Quickstart</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>{{page.title}}</h1>
-        <h2>{{page.subtitle}}</h2>
+        <h1>Poem Quickstart</h1>
+        <h2>Getting started with Poem in Lua</h2>
         <a href="https://github.com/hoelzl/Poem" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
@@ -28,7 +28,24 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          {{content}}
+          <p>Writing XBTs using the Lua implementation is the simplest way to get
+started with Poem.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>You need to have a working Lua installation; if you want to run the
+examples from the XBT repository you should use LuaJIT since some of
+the libraries exist only for LuaJIT. Clone the <code>Xbt.lua</code> from its
+<a href="https://github.com/hoelzl/Xbt.lua">GitHub repository</a> and ensure that
+your <code>LUA_PATH</code> environment variable contains the path to the
+<code>Xbt.lua</code> module. If you use OS X or Linux with the <code>bash</code> shell, your
+<code>.bashrc</code> should probably include a line of the form</p>
+
+<pre><code>export LUA_PATH="$LUA_PATH;.../xbt/?.lua;.../xbt/?/init.lua"
+</code></pre>
+
+<p>(where <code>.../xbt</code> is the path to the <code>Xbt.lua/src</code> folder).</p>
+
         </section>
 
 	<aside id="sidebar">

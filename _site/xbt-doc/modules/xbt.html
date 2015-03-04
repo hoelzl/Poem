@@ -1,0 +1,1372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Xbt</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Result_Types">Result Types </a></li>
+<li><a href="#State">State </a></li>
+<li><a href="#Evaluation_and_Compilation">Evaluation and Compilation </a></li>
+<li><a href="#Node_Types">Node Types </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/xbt.util.html">xbt.util</a></li>
+  <li><a href="../modules/xbt.path.html">xbt.path</a></li>
+  <li><a href="../modules/xbt.graph.html">xbt.graph</a></li>
+  <li><strong>xbt</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xbt</code></h1>
+<p>Extended Behavior Trees in Lua(JIT).</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: © 2015, Matthias Hölzl</li>
+        <li><strong>License</strong>: MIT, see the file LICENSE.md.</li>
+        <li><strong>Author</strong>: Matthias Hölzl</li>
+    </ul>
+
+
+<h2><a href="#Result_Types">Result Types </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#inactive">inactive (reward)</a></td>
+	<td class="summary">Create an XBT result value for inactive nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#running">running (reward)</a></td>
+	<td class="summary">Create an XBT result value for running nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#succeeded">succeeded (reward, continue)</a></td>
+	<td class="summary">Create an XBT result value for successful nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#failed">failed (reward, reason)</a></td>
+	<td class="summary">Create an XBT result value for failed nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_result">is_result (value)</a></td>
+	<td class="summary">Check whether a value is a valid result.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_inactive">is_inactive (result)</a></td>
+	<td class="summary">Check whether <a href="../modules/xbt.html#result">result</a> has status <code>&quot;inactive&quot;</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_running">is_running (result)</a></td>
+	<td class="summary">Check whether <a href="../modules/xbt.html#result">result</a> has status <code>&quot;running&quot;</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_succeeded">is_succeeded (result)</a></td>
+	<td class="summary">Check whether result has status <code>&quot;succeeded&quot;</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_failed">is_failed (result)</a></td>
+	<td class="summary">Check whether result has status <code>&quot;failed&quot;</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_done">is_done (result)</a></td>
+	<td class="summary">Check whether a node needs to be ticked again.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#can_continue">can_continue (result)</a></td>
+	<td class="summary">Check whether a node can be ticked again.</td>
+	</tr>
+</table>
+<h2><a href="#State">State </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#make_state">make_state (table)</a></td>
+	<td class="summary">Make a new state, or update a table to become a state.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set_local_data">set_local_data (node, path, state, data)</a></td>
+	<td class="summary">Store local data for a node instance.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#local_data">local_data (node, path, state, default)</a></td>
+	<td class="summary">Retreive local data for a node instance.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set_result">set_result (node, path, state, result)</a></td>
+	<td class="summary">Set the evaluation result for a node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#result">result (node, path, state)</a></td>
+	<td class="summary">Get the previous evaluation result for a node.</td>
+	</tr>
+</table>
+<h2><a href="#Evaluation_and_Compilation">Evaluation and Compilation </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#evaluators">evaluators</a></td>
+	<td class="summary">Evaluators for ticking nodes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#compilers">compilers</a></td>
+	<td class="summary">Compilers for XBTs.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#default_failure_reward">default_failure_reward</a></td>
+	<td class="summary">The default reward for failures.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tick">tick (node, path, state)</a></td>
+	<td class="summary">Trigger evaluation of a node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#define_node_type">define_node_type (nt, arg_names, evaluator, compilers)</a></td>
+	<td class="summary">Define an evaluation function and a constructor for node type <code>nt</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#deactivate_descendants">deactivate_descendants (node, path, state)</a></td>
+	<td class="summary">Set all descendants of a node to result status <a href="../modules/xbt.html#inactive">inactive</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#deactivate_node">deactivate_node (node, path, state, clear_data)</a></td>
+	<td class="summary">Deactivate a node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reset_node">reset_node (node, path, state, clear_data)</a></td>
+	<td class="summary">Reset a node to inactive status.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#functions">functions</a></td>
+	<td class="summary">A table mapping function names to functions.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#define_function_name">define_function_name (name, fun)</a></td>
+	<td class="summary">Define a name for a function or action.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#lookup_function">lookup_function (f)</a></td>
+	<td class="summary">Look up a function or action given its name.</td>
+	</tr>
+</table>
+<h2><a href="#Node_Types">Node Types </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#fun">fun (fun, args)</a></td>
+	<td class="summary">Generate a function node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#action">action (fun, args)</a></td>
+	<td class="summary">Generate an action node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#bool">bool (fun, args)</a></td>
+	<td class="summary">Generate a node that wraps a Boolean result.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#seq">seq (children)</a></td>
+	<td class="summary">Generate a sequence node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#all">all (children)</a></td>
+	<td class="summary">Generate an all-sequence node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#choice">choice (children)</a></td>
+	<td class="summary">Generate a choice node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xchoice">xchoice (children)</a></td>
+	<td class="summary">Generate an external choice node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#epsilon_greedy_child_fun">epsilon_greedy_child_fun (node, path, state)</a></td>
+	<td class="summary">Epsilon-greedy <code>child_fun</code> for <a href="../modules/xbt.html#xchoice">xchoice</a>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Result_Types"></a>Result Types </h2>
+
+         </p>
+
+<p> A node can either be inactive, running, succeeded or failed.  We
+ define functions that return tables correspondig to these XBT
+ result types.  These tables share several attributes: The Boolean
+ <code>continue</code> attribute indicates whether a process can continue.
+ Inactive and running processes can always continue; failed
+ processes never can.  Succeeded processes may set this flag to true
+ if, given more time, they can improve the value they have
+ previously returned.  Each XBT result carries a <code>reward</code> attribute
+ that indicates the execution reward for the evaluation of the subtree
+ that produces the result.
+
+    <dl class="function">
+    <dt>
+    <a name = "inactive"></a>
+    <strong>inactive (reward)</strong>
+    </dt>
+    <dd>
+    Create an XBT result value for inactive nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">reward</span>
+         The reward for executing the node (including all
+  descendants).  Default is <code>0</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An XBT result indicating that <code>node</code> is inactive.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "running"></a>
+    <strong>running (reward)</strong>
+    </dt>
+    <dd>
+    Create an XBT result value for running nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">reward</span>
+         The reward for executing the node (including all
+  descendants).  Default is <code>0</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An XBT result indicating that the node is running.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "succeeded"></a>
+    <strong>succeeded (reward, continue)</strong>
+    </dt>
+    <dd>
+    Create an XBT result value for successful nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">reward</span>
+         The reward for executing the node (including all
+  descendants).  Default is <code>0</code>.
+        </li>
+        <li><span class="parameter">continue</span>
+         Boolean indicating whether <code>reward</code> can be improved
+  by further computation.  Default is <code>false</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An XBT result indicating that the node has completed
+  successfully
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "failed"></a>
+    <strong>failed (reward, reason)</strong>
+    </dt>
+    <dd>
+    Create an XBT result value for failed nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">reward</span>
+         The reward of executing the node (including all
+  descendants).  Default is <code>0</code>.
+        </li>
+        <li><span class="parameter">reason</span>
+         A string describing the reason why the computation
+  failed.  Default is <code>nil</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An XBT result indicating that the node has failed.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_result"></a>
+    <strong>is_result (value)</strong>
+    </dt>
+    <dd>
+    Check whether a value is a valid result.
+ XBT results values are tables with a <code>status</code> attribute containing
+ one of the values <code>&quot;inactive&quot;</code>, <code>&quot;running&quot;</code>, <code>&quot;succeeded&quot;</code> or
+ <code>&quot;failed&quot;</code>, a numerical <code>reward</code> attribute and a <code>continue</code>
+ attribute.  If the result is inactive or running the <code>continue</code>
+ attribute must be truthy, if the result is failed it must be falsy.
+ If result has status <code>&quot;succeeded&quot;</code> the <code>continue</code> flag indicates
+ whether the node can continue in order to try to improve its
+ result.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         The value to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A Boolean indicating whether <code>value</code> is a valid result.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_inactive"></a>
+    <strong>is_inactive (result)</strong>
+    </dt>
+    <dd>
+    Check whether <a href="../modules/xbt.html#result">result</a> has status <code>&quot;inactive&quot;</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+         The result to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A Boolean indicatus whether <a href="../modules/xbt.html#result">result</a> is inactive.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_running"></a>
+    <strong>is_running (result)</strong>
+    </dt>
+    <dd>
+    Check whether <a href="../modules/xbt.html#result">result</a> has status <code>&quot;running&quot;</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+         The result to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A Boolean indicatus whether <a href="../modules/xbt.html#result">result</a> is running.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_succeeded"></a>
+    <strong>is_succeeded (result)</strong>
+    </dt>
+    <dd>
+    Check whether result has status <code>&quot;succeeded&quot;</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+         The result to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A Boolean indicatus whether <a href="../modules/xbt.html#result">result</a> is succeeded.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_failed"></a>
+    <strong>is_failed (result)</strong>
+    </dt>
+    <dd>
+    Check whether result has status <code>&quot;failed&quot;</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+         The result to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A Boolean indicatus whether <a href="../modules/xbt.html#result">result</a> is failed.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_done"></a>
+    <strong>is_done (result)</strong>
+    </dt>
+    <dd>
+    Check whether a node needs to be ticked again.
+ The function <a href="../modules/xbt.html#is_done">is_done</a> returns <code>true</code> if <a href="../modules/xbt.html#result">result</a> indicates that
+ node has already reached a state that allows the computation to
+ progress (even if the node could still be improved).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+         The result to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> if the result's status is either <a href="../modules/xbt.html#succeeded">succeeded</a> or
+  <a href="../modules/xbt.html#failed">failed</a>, <code>false</code> otherwise.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "can_continue"></a>
+    <strong>can_continue (result)</strong>
+    </dt>
+    <dd>
+    Check whether a node can be ticked again.
+ In contrast to <a href="../modules/xbt.html#is_done">is_done</a> this function returns <code>true</code> whenever the
+ node can continue executing, either to finish an incomplete
+ computation or to improve a previous result.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">result</span>
+         The result to be checked.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A Boolean indicating whether ticking the node may result in
+  a different result than the one previously obtained.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="State"></a>State </h2>
+
+         </p>
+
+<p> XBTs are passed a <code>state</code> object when they are evaluated.
+
+    <dl class="function">
+    <dt>
+    <a name = "make_state"></a>
+    <strong>make_state (table)</strong>
+    </dt>
+    <dd>
+    Make a new state, or update a table to become a state.
+ Any table can be used as state (there is no need to have a
+ particular metatable), but it has to contain certain attributes:</p>
+
+<ul>
+    <li><p>a <code>blackboard</code> for use by the nodes</p></li>
+    <li><p><code>node_results</code>, a table mapping paths to the corresponding XBT
+    results.</p></li>
+    <li><p><a href="../modules/xbt.html#local_data">local_data</a>, a table for storing local data that nodes want to
+    persist between ticks.  This data is cleared when nodes are
+    deactivated, so data that should persist between runs of the
+    XBT should be stored in the blackboard.</p></li>
+    <li><p><code>improve</code>, a Boolean flag that indicates whether nodes that can
+    improve their values should restart the computation or return
+    their previous values.</p></li>
+</ul>
+
+<p> <a href="../modules/xbt.html#make_state">make_state</a> takes a table and adds these attributes if necessry.
+ It can also be called without argument (or with a falsy value) to
+ generate a new state.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table</span>
+         Either falsy in which case a new state is created or a
+  table, in which case the missing fields are added.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A state.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_local_data"></a>
+    <strong>set_local_data (node, path, state, data)</strong>
+    </dt>
+    <dd>
+    Store local data for a node instance.
+ Save <code>data</code> in state so that it persists during ticks.  It can be
+ read with <a href="../modules/xbt.html#local_data">local_data</a> and is deleted by <a href="../modules/xbt.html#deactivate_node">deactivate_node</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node for which we are storing data.  Ignored by
+  the body, so it can be <code>nil</code> if local data is stored before a
+  node is available.
+        </li>
+        <li><span class="parameter">path</span>
+         A path identifying the instance of the node.
+        </li>
+        <li><span class="parameter">state</span>
+         The current state of the evaluation.
+        </li>
+        <li><span class="parameter">data</span>
+         The data we want to persist.  Any old data stored for
+  this instance is overwritten.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "local_data"></a>
+    <strong>local_data (node, path, state, default)</strong>
+    </dt>
+    <dd>
+    Retreive local data for a node instance.
+ Retreive data that was previously stored using <a href="../modules/xbt.html#set_local_data">set_local_data</a> or
+ return the default value if no previously stored value is
+ available.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node for which we are retreiving data.  Ignored by
+  the body, so it can be <code>nil</code> if the node for path is not known.
+        </li>
+        <li><span class="parameter">path</span>
+         A path identifying the instance of the node.
+        </li>
+        <li><span class="parameter">state</span>
+         The current state of the evaluation.
+        </li>
+        <li><span class="parameter">default</span>
+         The value returned if no data is available.  Default
+  is {}
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The previously stored data or <code>default</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_result"></a>
+    <strong>set_result (node, path, state, result)</strong>
+    </dt>
+    <dd>
+    Set the evaluation result for a node.
+ This is mostly useful for the <a href="../modules/xbt.html#tick">tick</a> function and for evaluators
+ that can improve their results.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node that was evaluated.
+        </li>
+        <li><span class="parameter">path</span>
+         A path identifying the instance of the node.
+        </li>
+        <li><span class="parameter">state</span>
+         The current state of the evaluation.
+        </li>
+        <li><span class="parameter">result</span>
+         The new evaluation result for <code>node</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The new evaluation result for <code>node</code>, i.e., <a href="../modules/xbt.html#result">result</a>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "result"></a>
+    <strong>result (node, path, state)</strong>
+    </dt>
+    <dd>
+    Get the previous evaluation result for a node.
+ This is mostly useful for the <a href="../modules/xbt.html#tick">tick</a> function and for evaluators
+ that can improve previous results.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node to evaluate.
+        </li>
+        <li><span class="parameter">path</span>
+         A path identifying the instance of the node.
+        </li>
+        <li><span class="parameter">state</span>
+         The current state of the evaluation.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The result of the previous evaluation of <code>node</code>.  If node
+  was not previously evaluated, an <a href="../modules/xbt.html#inactive">inactive</a> result is returned.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Evaluation_and_Compilation"></a>Evaluation and Compilation </h2>
+
+         </p>
+
+<p> The following functions are concerned with evaluating nodes or
+ compiling XBTs into a for that can be integrated into other systems
+ (currently no compilers are available).
+
+    <dl class="function">
+    <dt>
+    <a name = "evaluators"></a>
+    <strong>evaluators</strong>
+    </dt>
+    <dd>
+    Evaluators for ticking nodes.
+ Ticking is the fundamental operation that triggers evaluation of
+ nodes.  To make the node types extensible we look up the ticking
+ function in the table <a href="../modules/xbt.html#evaluators">evaluators</a> using the <code>xbt_node_type</code> as
+ key.  Each ticking function receives three arguments: the node that
+ is ticked, the path to the node from the root of the XBT to
+ uniquely identify the node instance, and the state of the
+ evaluation.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "compilers"></a>
+    <strong>compilers</strong>
+    </dt>
+    <dd>
+    Compilers for XBTs.
+ To achieve greater performance (or to integrate XBTs into existing
+ systems) it may be necessary to compile the XBT into a
+ representation that can be executed by the target system.  This
+ table maps each node type to a table that in turn maps backend
+ names to a compiler for the given node type and backend.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "default_failure_reward"></a>
+    <strong>default_failure_reward</strong>
+    </dt>
+    <dd>
+    The default reward for failures.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tick"></a>
+    <strong>tick (node, path, state)</strong>
+    </dt>
+    <dd>
+    Trigger evaluation of a node.
+ A tick triggers the evaluation of an XBT.  Each leaf node should
+ perform a small amount of computation when ticked and then return
+ an XBT result to its parent.  Long-running computations repeatedly
+ return a <a href="../modules/xbt.html#running">running</a> result until they either successfully complete
+ with result <a href="../modules/xbt.html#succeeded">succeeded</a> or fail with <a href="../modules/xbt.html#failed">failed</a>.</p>
+
+<p> In this implementation XBTs are not instanced, i.e., an XBT holds
+ no information about its evaluation.  Therefore each XBT may be
+ reused multiple times during an evaluation (e.g., by call nodes or
+ by structural sharing between nodes in the XBT so that the tree
+ becomes a DAG).</p>
+
+<p> The function <a href="../modules/xbt.html#tick">tick</a> manages the evaluation state of the XBT.  Each
+ node is uniquely identified by its path in the tree which is passed
+ as second argument.  The <code>state</code> passed as third argument contains
+ the state of the XBTs evaluation and methods to perform all actions
+ that leaf nodes may trigger in the environment.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node to be ticked.
+        </li>
+        <li><span class="parameter">path</span>
+         The path to <code>node</code>.
+        </li>
+        <li><span class="parameter">state</span>
+         The current state of the XBT's evaluation.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The result of the evaluation of the subtree below <code>node</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "define_node_type"></a>
+    <strong>define_node_type (nt, arg_names, evaluator, compilers)</strong>
+    </dt>
+    <dd>
+    Define an evaluation function and a constructor for node type <code>nt</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">nt</span>
+         The node type that will be stored as <code>xbt_node_type</code> in
+  all instances.
+        </li>
+        <li><span class="parameter">arg_names</span>
+         The names under which the arguments to the
+  constructor are stored in the resulting node.  For example, if
+  <code>nt</code> is <code>&quot;foo&quot;</code> and <code>arg_names</code> is <code>{&quot;bar&quot;, &quot;baz&quot;}</code>,
+  <a href="../modules/xbt.html#define_node_type">define_node_type</a> will define a function <code>foo</code> that takes two
+  arguments <code>arg1</code> and <code>arg2</code> and returns a table
+  <code>{xbt_node_type=&quot;foo&quot;, bar=arg1, baz=arg2, id=...}</code>.  Composite
+  nodes must have an argument named <code>children</code>.
+        </li>
+        <li><span class="parameter">evaluator</span>
+         An evaluator function for this node type.  It is
+  called with three arguments: a node, a path and a state.  The
+  state always contains <code>blackboard</code>, <code>node_results</code> and <code>improve</code>
+  attributes.
+        </li>
+        <li><span class="parameter">compilers</span>
+         If provided the argument is a table mapping
+  backend names to functions that can compile the XBT for that type
+  of backend.  Default is <code>{}</code>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "deactivate_descendants"></a>
+    <strong>deactivate_descendants (node, path, state)</strong>
+    </dt>
+    <dd>
+    Set all descendants of a node to result status <a href="../modules/xbt.html#inactive">inactive</a>.
+ The desendants of an inactive node all have to be inactive as well,
+ so we don't recurse into inactive children.  However, since
+ planning or learning nodes might reorder their children dynamically
+ we cannot be sure that the right siblings of an inactive child are
+ also inactive; therefore we always process the complete list of
+ children.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node whose descendants we are deactivating.
+        </li>
+        <li><span class="parameter">path</span>
+         The path to <code>node</code> in the XBT.
+        </li>
+        <li><span class="parameter">state</span>
+         The state of the XBT's evaluation.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "deactivate_node"></a>
+    <strong>deactivate_node (node, path, state, clear_data)</strong>
+    </dt>
+    <dd>
+    Deactivate a node.
+ Set all descendants of a node to status <a href="../modules/xbt.html#inactive">inactive</a> and clear any
+ data the node might have stored under its path, but keep the
+ current result status of the node in <code>state</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node whose descendants we are deactivating.
+        </li>
+        <li><span class="parameter">path</span>
+         The path to <code>node</code> in the XBT.
+        </li>
+        <li><span class="parameter">state</span>
+         The state of the XBT's evaluation.
+        </li>
+        <li><span class="parameter">clear_data</span>
+         If true, the local data for the path is deleted,
+  otherwise it is kept
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "reset_node"></a>
+    <strong>reset_node (node, path, state, clear_data)</strong>
+    </dt>
+    <dd>
+    Reset a node to inactive status.
+ Set the node and all of its descendants to status <a href="../modules/xbt.html#inactive">inactive</a> and
+ clear any data the node might have stored under its path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The node whose descendants we are deactivating.
+        </li>
+        <li><span class="parameter">path</span>
+         The path to <code>node</code> in the XBT.
+        </li>
+        <li><span class="parameter">state</span>
+         The state of the XBT's evaluation.
+        </li>
+        <li><span class="parameter">clear_data</span>
+         If true, the local data for the path is deleted,
+  otherwise it is kept
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "functions"></a>
+    <strong>functions</strong>
+    </dt>
+    <dd>
+    A table mapping function names to functions.
+ Function and action nodes use this table to look up their <a href="../modules/xbt.html#fun">fun</a>
+ attributes.
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "define_function_name"></a>
+    <strong>define_function_name (name, fun)</strong>
+    </dt>
+    <dd>
+    Define a name for a function or action.
+ We often want to serialize XBTs.  To make this more convenient we
+ allow functions appearing in leaf nodes to be specified as strings,
+ in which case we look up the function value in <a href="../modules/xbt.html#functions">xbt.functions</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         The name with which the function can be accessed in
+  <a href="../modules/xbt.html#fun">fun</a> nodes.
+        </li>
+        <li><span class="parameter">fun</span>
+         The function.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "lookup_function"></a>
+    <strong>lookup_function (f)</strong>
+    </dt>
+    <dd>
+    Look up a function or action given its name.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">f</span>
+         A function or the name of a function defined using
+  <a href="../modules/xbt.html#define_function_name">define_function_name</a>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+         If <code>f</code> is a string, use it as key in the <a href="../modules/xbt.html#functions">xbt.functions</a>
+  table and return the value found.  Throw an error if no definition
+  for <code>f</code> exists.  Otherwise just return <code>f</code>.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Node_Types"></a>Node Types </h2>
+
+         </p>
+
+<p> An XBT node is represented by a table containing an <code>xbt_node_type</code>
+ attribute.  Nodes can either be composite (have child nodes) or
+ atomic (encapsulate a function or coroutine).  Each node has a
+ unique ID.
+
+    <dl class="function">
+    <dt>
+    <a name = "fun"></a>
+    <strong>fun (fun, args)</strong>
+    </dt>
+    <dd>
+    Generate a function node.
+ Function ("fun") nodes encapsulate a function.  The function is
+ called with the node, the path and a state as arguments and has to
+ return a valid XBT result.  The node and path are mainly useful if
+ the function has to store local information in the state.  If the
+ information is for all occurences of the function then <code>node</code> can
+ be used as key; if it is just for this occurrence of the function
+ then <code>tostring(path)</code> can be used.  Note that <code>path</code> itself is not
+ a useful key, since there is no guarantee that different
+ invocations of the function at the same position will receive
+ identical paths.  The paths are guaranteed to be <code>==</code>, however.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fun</span>
+         A function invoked with <code>node</code>, <code>path</code> and <code>state</code> as
+  arguments.  It performs the work of this node.
+        </li>
+        <li><span class="parameter">args</span>
+         The "arguments" for the <a href="../modules/xbt.html#fun">fun</a> parameter.  They are
+  stored as <code>node.args</code> so that they can be accessed by the <a href="../modules/xbt.html#fun">fun</a>
+  parameter when it is executing.  These arguments are the same for
+  all invocations of the node, since they are stored in the node
+  itself, not in the path.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+         An function node.  This node is serializable if the <a href="../modules/xbt.html#fun">fun</a>
+   and <code>args</code> arguments are serializable.  Typically this is the
+   case if <a href="../modules/xbt.html#fun">fun</a> is a string that references a function defined with
+  <a href="../modules/xbt.html#define_function_name">define_function_name</a>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "action"></a>
+    <strong>action (fun, args)</strong>
+    </dt>
+    <dd>
+    Generate an action node.
+ Action nodes are similar to functions, but they wrap the return
+ value of the function into a XBT result that indicates that the
+ function has succeeded and contains the return value of the
+ function as reward.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fun</span>
+         A function invoked with <code>node</code>, <code>path</code> and <code>state</code> as
+  arguments.  It performs the work of this node and returns a number
+  that is returned as the result of the action.
+        </li>
+        <li><span class="parameter">args</span>
+         The "arguments" for the <a href="../modules/xbt.html#fun">fun</a> parameter.  They are
+  stored as <code>node.args</code> so that they can be accessed by the <a href="../modules/xbt.html#fun">fun</a>
+  parameter when it is executing.  These arguments are the same for
+  all invocations of the node, since they are stored in the node
+  itself, not in the path.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+         An action node.  This node is serializable if the <a href="../modules/xbt.html#fun">fun</a> and
+  <code>args</code> arguments are serializable.  Typically this is the case if
+  <a href="../modules/xbt.html#fun">fun</a> is a string that references a function defined with
+  <a href="../modules/xbt.html#define_function_name">define_function_name</a>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "bool"></a>
+    <strong>bool (fun, args)</strong>
+    </dt>
+    <dd>
+    Generate a node that wraps a Boolean result.
+ Boolean nodes are specialized function nodes that return either
+ <a href="../modules/xbt.html#failed">failed</a> or <a href="../modules/xbt.html#succeeded">succeeded</a>, depending on whether the encapsulated
+ function returns a truthy or falsy value.  The reward of the call
+ has to be provided as <code>args.reward</code> when the node is created; it is
+ the same for all invocations of this node.  The evaluated function
+ should not modify the <code>node.args.reward</code> value to return different
+ rewards; functions that need to return different rewards for different
+ invocations should instead be defined as <a href="../modules/xbt.html#fun">fun</a> nodes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fun</span>
+         A function invoked with <code>node</code>, <code>path</code> and <code>state</code> as
+  arguments.  It performs the work of this node.
+        </li>
+        <li><span class="parameter">args</span>
+         The "arguments" for the <a href="../modules/xbt.html#fun">fun</a> parameter.  They are
+  stored as <code>node.args</code> so that they can be accessed by the <a href="../modules/xbt.html#fun">fun</a>
+  parameter when it is executing.  These arguments are the same for
+  all invocations of the node, since they are stored in the node
+  itself, not in the path.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+         A Boolean node.  This node is serializable if the <a href="../modules/xbt.html#fun">fun</a> and
+  <code>args</code> arguments are serializable.  Typically this is the case if
+  <a href="../modules/xbt.html#fun">fun</a> is a string that references a function defined with
+  <a href="../modules/xbt.html#define_function_name">define_function_name</a>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "seq"></a>
+    <strong>seq (children)</strong>
+    </dt>
+    <dd>
+    Generate a sequence node.
+ Sequence ("seq") nodes evaluate their children sequentially and
+ fail as soon as one of their children fails.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">children</span>
+         The child nodes of the node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A sequence node.  This node is serializable if its children
+  are.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "all"></a>
+    <strong>all (children)</strong>
+    </dt>
+    <dd>
+    Generate an all-sequence node.
+ All-sequence ("all") nodes evaluate their children sequentially.
+ They always evaluate all of their children and return success, no
+ matter whether their children succeed or fail.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">children</span>
+         The child nodes of the node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An all-sequence node.  This node is serializable if its children
+  are.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "choice"></a>
+    <strong>choice (children)</strong>
+    </dt>
+    <dd>
+    Generate a choice node.
+ Choice nodes evaluate their children sequentially and succeed as
+ soon as one of their children succeeds.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">children</span>
+         The child nodes of the node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A choice node.  This node is serializable if its children
+  are.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "xchoice"></a>
+    <strong>xchoice (children)</strong>
+    </dt>
+    <dd>
+    Generate an external choice node.
+ External choice nodes call a function to determine the evaluation
+ order of their children and succeed as soon as one of their
+ children succeeds.  If this function removes nodes from the list
+ of children it has to deactivate them to free any resources the
+ children might retain.  The update_fun is called just before
+ deactivating the node when a successful or failed result has been
+ reached.  It receives the node, path and state as arguments, and
+ either the result of the evaluation if <code>child_fun</code> returned at
+ least one child, or <code>nil</code> otherwise.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">children</span>
+         The child nodes of the node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An external choice node.  This node is serializable if its
+  children are.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "epsilon_greedy_child_fun"></a>
+    <strong>epsilon_greedy_child_fun (node, path, state)</strong>
+    </dt>
+    <dd>
+    Epsilon-greedy <code>child_fun</code> for <a href="../modules/xbt.html#xchoice">xchoice</a>.
+ Sort the children of a node and with probability <code>state.epsilon</code>
+ or <code>node.args.epsilon</code> swap the first element of the result with
+ another one.  The function to generate the sorted list of children
+ is taken from <code>node.args.sorted_children</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">node</span>
+         The xchoice node.
+        </li>
+        <li><span class="parameter">path</span>
+         Path that identifies the instance of the node
+        </li>
+        <li><span class="parameter">state</span>
+         The current state of the evaluation.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        An epsilon-greedy result list of children.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-03-03 12:33:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

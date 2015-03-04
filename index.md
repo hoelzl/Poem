@@ -19,19 +19,19 @@ circumstances it encounters or diagnose malfunctions---these are things
 systems should do on their own. Put another way, systems should be
 adaptive and able to operate autonomously.
 
-Let us look at an example: a swarm of rescue robots. Imagine that after
-a natural disaster or an accident in an industrial plant, we can deploy
-robots that aid the human rescue parties by, e.g., exploring and mapping
-the terrain, securing dangerous structures, locating victims and
-transporting them to safety, or by sealing radioactive or toxic
-substances. Clearly this has many benefits even if the robots are not
-autonomous but have to be remotely controlled by humans. But the
-environment in disaster areas is often not conductive to remote control,
-as wires are likely to become physically damaged and wireless reception
-is often likely to be poor. In addition, human experts are already under
-enormous pressure, so it would be advantageous if the robot swarm could
-operate autonomously. This clearly requires the robots to adapt to a
-wide range of different, dynamically changing situations.
+Let us look at an example: a swarm of rescue robots. Imagine that
+after a natural disaster or an accident in an industrial plant, we can
+deploy robots that aid the human rescue parties by, e.g., exploring
+and mapping the terrain, securing dangerous structures, locating
+victims and transporting them to safety, or by sealing off radioactive
+or toxic substances. Clearly this has many benefits even if the robots
+are not autonomous but have to be remotely controlled by humans. But
+the environment in disaster areas is often not conductive to remote
+control, as wires are likely to become physically damaged and wireless
+reception is often poor. In addition, human experts are already under
+enormous pressure, so it would be advantageous if the robot swarm
+could operate autonomously. This clearly requires the robots to adapt
+to a wide range of different, dynamically changing situations.
 
 The big question is, of course, how can we build these kinds of
 systems?  And in particular, how can we build them to do the right
@@ -49,15 +49,54 @@ and use cases.  There are, however, certain features that *all*
 systems that can reasonably be called autonomous and adaptive share:
 they need some way to store information, some way to receive
 information from their environment and, unless we are dealing with
-pure sensor systems, some way to influence their environment.  There
-are many ways how these functionalities can be realized: information
-can be stored in a centralized location, distributed between agents,
-or even in the environment.  The interface between the awareness
-mechanism may be formally defined, or it may be difficult to say where
-the boundary of the awareness mechanism ends, as in the case of the
-immune and nervous system of animals.  The book
+pure sensor systems, some way to influence their environment.  In
+addition a system has to have some mechanism for answering queries
+against the stored information, otherwise it might as well not bother
+to store the information in the first place.  Simple query mechanisms
+may do nothing but access the information stored in the system's
+memory, more sophisticated mechanisms may involve complex reasoning or
+simulation steps.  Since we want to treat all systems in a unified
+manner we assume that the system contains a *reasoning mechanism* of
+some form.  The simple query mechanism would employ a reasoning
+mechanism that performs no reasoning at all, but that's OK. To make
+the problem sound more grandiose and scientific I call these
+components together the *awareness mechanism* of a system.
+
+An awareness mechanism can be realized in a myriad of ways:
+information can be stored in a centralized location, it can be
+distributed between agents, or it may even be stored in the
+environment.  As mentioned before, the reasoner may be trivial or
+sophisticated.  The interface between the awareness mechanism and the
+rest of the system may be formally defined, or it may be difficult to
+say where the boundary of the awareness mechanism ends, as in the case
+of the immune and nervous system of animals.  The book
 [The Computer after Me](http://thecomputerafterme.eu/) contains a much
 more in-depth discussion of these topics.
+
+So we now know *what* *Poem* is supposed to be good for: building
+awareness mechanisms, i.e., the "brains" of adaptive, autonomous
+systems.  This, of course, leads immediately to the question *how*
+might *Poem* support this.  Why don't we use any old programming
+language to write our awareness mechanism?
+
+The answer to this questions is twofold and the first half may be
+either reassuring or off-putting, depending on whether you like
+programming or not.  Firstly, when using *Poem* you still use any old
+programming language to write your system.  Currently I have written
+implementations of *Poem* in Lua, in Julia and in Lisp (that covers
+all the mainstream languages, right?) but there is no reason why
+*Poem* might not be implemented on top of C, C++, Java or any other
+language (although the Lua implementation provides a very nice
+solution for C/C++-based programs).  You just add a layer on top of
+the language that structures your program as a tree of behaviors.
+Behaviors are similar to functions with a particular simple interface:
+each behavior gets the same types of arguments and returns the same
+types of results.  The standardized interface serves the same purpose
+that standardized containers play for shipping goods: while the
+insides of your boxes may contain wildly different things the
+infrastructure does not have to care about this at all.  Inside the
+user-built "behavior boxes" you may perform any activity you like, in
+any way you like; from the outside they all look the same.
 
 For most systems that we build we have a definite idea what the system
 should achieve (even if we don't know how to implement a solution, or
@@ -144,10 +183,66 @@ reasons, for example:
 * currently available techniques work rather poorly for learning
   distributed behaviors.
 
+Poem
+----
+
+To build self-aware robots that exhibit useful behaviors we want to
+combine fixed behavior with learning and reasoning in a flexible
+manner: Behaviors for which the designers have good solutions can be
+specified at design time; choices where the designers are not certain
+which behavior is appropriate should be learned by experimentation at
+run time; designers should be able to include guesses about
+appropriate behaviors into learning or reasoning processes.  And we
+want to be compatible with the main idea from predictive processing
+which we summarize as "predict state or behavior at a high level; pass
+this prediction down to more and more detailed behaviors, and pass
+error values up.
+
+The mechanism to achieve this in *Poem* are *partial programs*,
+programs in which some parts are (more or less) unspecified.  The
+unspecified parts are connected to learning or reasoning engines that
+are responsible for computing the *completion* of the partial program,
+i.e., a program in which all unspecified decisions have been
+resolved.  To take good decisions it is often necessary to plan or
+to simulate the effects of certain decisions.  Therefore *Poem* allows
+the *virtualization* of the program state - the program state is
+decoupled from the programs's environment and effects are only applied
+to the local state.  This allows the easy integration of planning and
+simulations into programs.
+
+Surely this must be very complicated?  Fortunately the answer is a
+resounding "it depends".  In *Poem* partial programs are structured as
+extended behavior trees (XBTs) which are very easy to understand.  So
+the basic structure of programs and the effects of virtualization and
+repeated execution of program parts is easy to visualize.  However,
+different learning, reasoning and planning engines introduce
+complexities of their own that typically cannot be hidden from the
+programmer: Using reinforcement techniques requires almost no work or
+deep understanding on the part of the system designers (although
+tuning them to achieve good performance does); using run-time theorem
+proving requires quite a bit of background in logic and automated
+theorem proving to avoid running into all kinds of complexity.
+
+(Until October 2014 the answer would have been an unqualified
+"unfortunately yes": Previous versions of *Poem* used a
+non-deterministic general-purpose language to specify partial
+programs; this reulted in many subtle interactions between features
+and surprising behaviors.)
+
+
+
+Continuing
+----------
+
+The easiest way to start writing *Poem* programs, is with XBTs in Lua.
+The [Introduction to XBTs]({{site.url}}/xbt.html) contains a general
+introduction to XBTs; the [quickstart]({{site.url}}/quickstart.html)
+contains a "Getting Started" guide.  Details about using XBTs can be
+found in the
+[API documentation for XBTs]({{site.url}}/xbt-doc/modules/xbt.html).
 
 Acknowledgments
 ---------------
-
 
 The development of Poem was funded by the European project IP 257414
 ASCENS ("Software Engineering for **A**utonomic
